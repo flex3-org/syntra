@@ -1,5 +1,6 @@
-fastapi==0.120.0
-uvicorn==0.38.0
-httpx==0.28.1
+fastapi
+uvicorn
+httpx
 hypersync
 polars
+fastapi-mcp

@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@envio-dev/hypersync-client": "^0.6.6",
+    "@google/generative-ai": "^0.24.1",
     "next": "16.0.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "use-mcp": "^0.0.21"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
