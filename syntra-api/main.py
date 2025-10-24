@@ -1,7 +1,13 @@
-from fastapi import FastAPI, Depends, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import httpx
+import hypersync
+from hypersync import (
+    JoinMode,
+    TransactionField,
+    ClientConfig,
+    TransactionSelection,
+    FieldSelection
+)
 
 app = FastAPI()
 
@@ -17,28 +23,54 @@ app.add_middleware(
 def hi():
     return {"I am running at 8000!"}
 
-@app.post("/query")
+@app.get("/query")
 async def query_hypersync():
-    query_body = {
-    "fromBlock": 0,
-    "transactions": [
-      {
-        "from": ["0x5a830d7a5149b2f1a2e72d15cd51b84379ee81e5"]
-      },
-      {
-        "to": ["0x5a830d7a5149b2f1a2e72d15cd51b84379ee81e5"]
-      }
-    ],
-  };
-    
-    try:
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                "https://eth.hypersync.xyz/query",
-                json=query_body,
-                headers={"Content-Type": "application/json"}
+    client = hypersync.HypersyncClient(ClientConfig(
+      url="https://eth.hypersync.xyz",
+      bearer_token="f994fd7c-9894-482d-8618-8d1586cadfe7",
+    ))
+
+    query = hypersync.Query(
+        from_block=0,
+        join_mode=JoinMode.JOIN_NOTHING,
+        field_selection=FieldSelection(
+            transaction=[
+                TransactionField.BLOCK_NUMBER,
+                TransactionField.TRANSACTION_INDEX,
+                TransactionField.HASH,
+                TransactionField.FROM,
+                TransactionField.TO,
+                TransactionField.VALUE,
+                TransactionField.INPUT,
+            ]
+        ),
+        transactions=[
+            TransactionSelection(
+                hash=[
+                    "0x410eec15e380c6f23c2294ad714487b2300dd88a7eaa051835e0da07f16fc282"
+                ]
             )
-            response.raise_for_status()
-            return response.json()
+        ],
+    )
+
+    try:
+        res = await client.get(query)
+        
+        if not res.data.transactions:
+            return {
+                "error": "No transaction found"
+            }
+
+        tx = res.data.transactions[0]
+        return {
+            "block_number": tx.block_number,
+            "transaction_index": tx.transaction_index,
+            "hash": tx.hash,
+            "from": tx.from_,
+            "to": tx.to,
+            "value": tx.value,
+            "input": tx.input
+        }
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
