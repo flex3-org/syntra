@@ -1,13 +1,24 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect, useCallback } from "react";
+import {
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import { useMcp } from "use-mcp/react";
 import { MCPChatMessage, MCPToolCall } from "@/app/types/mcp-chat";
 import { ConnectionStatus } from "./ConnectionStatus";
 import { ChatMessages } from "./ChatMessages";
 import { ChatInput } from "./ChatInput";
 
-export function MCPChat() {
+export interface MCPChatHandle {
+  sendMessage: (message: string) => void;
+}
+
+export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<MCPChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -117,10 +128,10 @@ export function MCPChat() {
     return resultsArray;
   }, []);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading || mcp.state !== "ready") return;
+  const handleSend = async (messageOverride?: string) => {
+    const message = messageOverride || input.trim();
+    if (!message || isLoading || mcp.state !== "ready") return;
 
-    const message = input.trim();
     setInput("");
     setError(undefined);
     setIsLoading(true);
@@ -206,8 +217,15 @@ export function MCPChat() {
     setError(undefined);
   };
 
+  // Expose sendMessage method to parent components via ref
+  useImperativeHandle(ref, () => ({
+    sendMessage: (message: string) => {
+      handleSend(message);
+    },
+  }));
+
   return (
-    <div className="flex flex-col h-full bg-white rounded-lg overflow-hidden shadow-lg border border-gray-200">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 transition-colors">
       {/* Connection Status */}
       <ConnectionStatus
         state={mcp.state || "connecting"}
@@ -229,10 +247,12 @@ export function MCPChat() {
       <ChatInput
         input={input}
         setInput={setInput}
-        onSend={handleSend}
+        onSend={() => handleSend()}
         disabled={mcp.state !== "ready"}
         isLoading={isLoading}
       />
     </div>
   );
-}
+});
+
+MCPChat.displayName = "MCPChat";

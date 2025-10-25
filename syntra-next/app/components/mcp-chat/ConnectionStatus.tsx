@@ -41,25 +41,25 @@ export function ConnectionStatus({
   };
 
   return (
-    <div className="flex items-center justify-between p-3 border-b bg-gray-50">
-      <div className="flex items-center gap-2">
+    <div className="flex items-center justify-between px-6 py-1 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 transition-colors">
+      <div className="flex items-center gap-3">
         <div
-          className={`w-2 h-2 rounded-full ${
+          className={`w-3 h-3 rounded-full ${
             state === "ready"
-              ? "bg-green-500 animate-pulse"
+              ? "bg-green-500 animate-pulse shadow-lg shadow-green-500/50"
               : state === "failed"
-              ? "bg-red-500"
-              : "bg-yellow-500 animate-pulse"
+              ? "bg-red-500 shadow-lg shadow-red-500/50"
+              : "bg-yellow-500 animate-pulse shadow-lg shadow-yellow-500/50"
           }`}
         />
-        <span className={`text-sm font-medium ${getStatusColor()}`}>
+        <span className={`text-sm font-semibold ${getStatusColor()}`}>
           {getStatusText()}
         </span>
       </div>
       {state === "failed" && (
         <button
           onClick={retry}
-          className="px-3 py-1 text-xs border rounded hover:bg-gray-100"
+          className="px-4 py-1 text-xs font-medium text-white bg-red-600 border border-red-700 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-sm"
         >
           Retry
         </button>
