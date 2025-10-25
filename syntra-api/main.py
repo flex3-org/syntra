@@ -34,7 +34,13 @@ mcp_v1 = FastApiMCP(
         "contract_logs",
         "block_data",
         "chain_info",
-        "wallet_activity"
+        "wallet_activity",
+        "erc20_transfers_and_approvals",
+        "block_rewards",
+        "blocks_and_transactions",
+        "event_logs",
+        "uniswap_swaps",
+        "call_decoder"
     ],
 )
 mcp_v1.mount(mount_path="mcp")
