@@ -29,6 +29,7 @@ mcp_v1 = FastApiMCP(
     name="Kuration AI MCP!",
     include_operations=[
         "txn_by_id",
+        "blocks_transactions_hashes"
     ],
 )
 mcp_v1.mount(mount_path="mcp")

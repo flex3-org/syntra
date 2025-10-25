@@ -1,12 +1,10 @@
 import hypersync
-from hypersync import ClientConfig, JoinMode, TransactionField, FieldSelection, TransactionSelection, Query
+from hypersync import JoinMode, TransactionField, FieldSelection, TransactionSelection, Query
 from fastapi import HTTPException
+from config.hypersync_client import get_hypersync_client
 
 async def txn_by_id(tx_hash: str):
-    client = hypersync.HypersyncClient(ClientConfig(
-      url="https://eth.hypersync.xyz",
-      bearer_token="f994fd7c-9894-482d-8618-8d1586cadfe7",
-    ))
+    client = get_hypersync_client()
 
     query = hypersync.Query(
         from_block=0,
