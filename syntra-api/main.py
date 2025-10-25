@@ -26,10 +26,15 @@ def hi():
 
 mcp_v1 = FastApiMCP(
     app,
-    name="Kuration AI MCP!",
+    name="Syntra AI MCP!",
     include_operations=[
         "txn_by_id",
-        "blocks_transactions_hashes"
+        "blocks_transactions_hashes",
+        "erc20_transfers",
+        "contract_logs",
+        "block_data",
+        "chain_info",
+        "wallet_activity"
     ],
 )
 mcp_v1.mount(mount_path="mcp")

@@ -1,0 +1,94 @@
+# 1. Get Transaction by Hash
+curl -X POST "http://localhost:8000/api/hypersync/txn_by_id" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tx_hash": "0x410eec15e380c6f23c2294ad714487b2300dd88a7eaa051835e0da07f16fc282"
+  }'
+
+# 2. Get Blocks and Transaction Hashes
+curl -X POST "http://localhost:8000/api/hypersync/blocks_transactions_hashes" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 3. Get ERC20 Transfers (All ERC20 tokens)
+curl -X POST "http://localhost:8000/api/hypersync/erc20_transfers" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 4. Get ERC20 Transfers (Specific contract - USDT example)
+curl -X POST "http://localhost:8000/api/hypersync/erc20_transfers" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050,
+    "contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+  }'
+
+# 5. Get Contract Logs (All events from contract)
+curl -X POST "http://localhost:8000/api/hypersync/contract_logs" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 6. Get Contract Logs (Filtered by event topic - Transfer events)
+curl -X POST "http://localhost:8000/api/hypersync/contract_logs" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "from_block": 17000000,
+    "to_block": 17000050,
+    "event_topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+  }'
+
+# 7. Get Block Data (With transactions and logs)
+curl -X POST "http://localhost:8000/api/hypersync/block_data" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "block_number": 17000000,
+    "include_transactions": true,
+    "include_logs": true
+  }'
+
+# 8. Get Block Data (Only block information)
+curl -X POST "http://localhost:8000/api/hypersync/block_data" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "block_number": 17000000,
+    "include_transactions": false,
+    "include_logs": false
+  }'
+
+# 9. Get Chain Information
+curl -X GET "http://localhost:8000/api/hypersync/chain_info"
+
+# 10. Get Wallet Activity (With ERC20 transfers)
+curl -X POST "http://localhost:8000/api/hypersync/wallet_activity" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "wallet_address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "from_block": 17000000,
+    "to_block": 17000050,
+    "include_erc20": true
+  }'
+
+# 11. Get Wallet Activity (ETH transactions only)
+curl -X POST "http://localhost:8000/api/hypersync/wallet_activity" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "wallet_address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "from_block": 17000000,
+    "to_block": 17000050,
+    "include_erc20": false
+  }'
+
+# 12. Health Check / Root Endpoint
+curl -X GET "http://localhost:8000/"

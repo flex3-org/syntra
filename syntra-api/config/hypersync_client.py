@@ -11,7 +11,7 @@ def get_hypersync_client() -> hypersync.HypersyncClient:
     global _client
     if _client is None:
         _client = hypersync.HypersyncClient(hypersync.ClientConfig(
-            url="https://eth.hypersync.xyz",
+            url="https://base.hypersync.xyz",
             bearer_token="f994fd7c-9894-482d-8618-8d1586cadfe7",
         ))
     return _client
