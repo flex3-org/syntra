@@ -92,3 +92,83 @@ curl -X POST "http://localhost:8000/api/hypersync/wallet_activity" \
 
 # 12. Health Check / Root Endpoint
 curl -X GET "http://localhost:8000/"
+
+# 13. Get ERC20 Transfers and Approvals (All tokens)
+curl -X POST "http://localhost:8000/api/hypersync/erc20_transfers_and_approvals" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 14. Get ERC20 Transfers and Approvals (Specific contract - USDT example)
+curl -X POST "http://localhost:8000/api/hypersync/erc20_transfers_and_approvals" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050,
+    "contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+  }'
+
+# 15. Calculate Block Rewards for Miner
+curl -X POST "http://localhost:8000/api/hypersync/block_rewards" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "miner_address": "0xe43Cc5b6FF052f5Aa931A4F9eF2bfA0C500014CA",
+    "from_block": 15537394,
+    "to_block": 15537500
+  }'
+
+# 16. Calculate Block Rewards (Auto-detect current height)
+curl -X POST "http://localhost:8000/api/hypersync/block_rewards" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "miner_address": "0xe43Cc5b6FF052f5Aa931A4F9eF2bfA0C500014CA",
+    "from_block": 15537394
+  }'
+
+# 17. Get Blocks and Transactions (Complete data)
+curl -X POST "http://localhost:8000/api/hypersync/blocks_and_transactions" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 18. Get Event Logs (Transfer events from USDT)
+curl -X POST "http://localhost:8000/api/hypersync/event_logs" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "event_topic": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 19. Get Uniswap Swap Events (ETH/RAI pool)
+curl -X POST "http://localhost:8000/api/hypersync/uniswap_swaps" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pool_address": "0x3e47D7B7867BAbB558B163F92fBE352161ACcb49",
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 20. Decode Function Calls (DAI transfer calls)
+curl -X POST "http://localhost:8000/api/hypersync/call_decoder" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract_address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "function_signature": "transfer(address dst, uint256 wad)",
+    "from_block": 17000000,
+    "to_block": 17000050
+  }'
+
+# 21. Decode Function Calls (Auto-detect current height)
+curl -X POST "http://localhost:8000/api/hypersync/call_decoder" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract_address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "function_signature": "transfer(address dst, uint256 wad)",
+    "from_block": 20519993
+  }'
