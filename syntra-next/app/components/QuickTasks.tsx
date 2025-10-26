@@ -1,23 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Link, 
-  FileText, 
-  Box, 
-  Wallet, 
-  Hash, 
-  Coins, 
-  ScrollText, 
-  TrendingUp, 
-  Layers, 
-  Search, 
-  Zap, 
-  ArrowUpDown, 
+import {
+  Link,
+  FileText,
+  Box,
+  Wallet,
+  Hash,
+  Coins,
+  ScrollText,
+  TrendingUp,
+  Layers,
+  Search,
+  Zap,
+  ArrowUpDown,
   Code,
   ChevronDown,
   ChevronUp,
-  LucideIcon 
+  LucideIcon,
 } from "lucide-react";
 
 interface QuickTask {
@@ -32,12 +32,6 @@ interface QuickTasksProps {
 }
 
 const quickTasks: QuickTask[] = [
-  {
-    icon: Link,
-    label: "Get Chain Info",
-    prompt:
-      "Get the current blockchain information including chain ID and latest block height.",
-  },
   {
     icon: FileText,
     label: "Lookup Transaction",
@@ -67,6 +61,12 @@ const quickTasks: QuickTask[] = [
     label: "ERC20 Transfers",
     prompt:
       "Find all ERC20 token transfer events within a block range, optionally filtered by specific contract address.",
+  },
+  {
+    icon: Link,
+    label: "Get Chain Info",
+    prompt:
+      "Get the current blockchain information including chain ID and latest block height.",
   },
   {
     icon: ScrollText,
@@ -112,12 +112,14 @@ const quickTasks: QuickTask[] = [
   },
 ];
 
-const INITIAL_DISPLAY_COUNT = 8;
+const INITIAL_DISPLAY_COUNT = 3;
 
 export function QuickTasks({ onTaskClick, disabled = false }: QuickTasksProps) {
   const [showAll, setShowAll] = useState(false);
-  
-  const displayedTasks = showAll ? quickTasks : quickTasks.slice(0, INITIAL_DISPLAY_COUNT);
+
+  const displayedTasks = showAll
+    ? quickTasks
+    : quickTasks.slice(0, INITIAL_DISPLAY_COUNT);
   const hasMoreTasks = quickTasks.length > INITIAL_DISPLAY_COUNT;
 
   return (
@@ -144,7 +146,7 @@ export function QuickTasks({ onTaskClick, disabled = false }: QuickTasksProps) {
             </button>
           );
         })}
-        
+
         {/* Load More / Show Less Button */}
         {hasMoreTasks && (
           <button
