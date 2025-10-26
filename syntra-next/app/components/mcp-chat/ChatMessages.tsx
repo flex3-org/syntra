@@ -49,9 +49,9 @@ export function ChatMessages({
   if (messages.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 dark:text-gray-400 p-10">
-        <div className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-linear-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 shadow-lg">
+        <div className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-linear-to-br from-blue-100 to-blue-200 dark:bg-gradient-to-r dark:from-[#FF8A3D] dark:to-[#FFC600] shadow-lg">
           <svg
-            className="w-10 h-10 text-blue-600 dark:text-blue-300"
+            className="w-10 h-10 text-black dark:text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

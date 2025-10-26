@@ -31,16 +31,16 @@ export function InfoView() {
   ];
 
   return (
-    <div className="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-950 p-6">
+    <div className="flex-1 overflow-y-auto bg-gray-100 dark:bg-[#0B0F1A] p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-[#1F2937] rounded-lg shadow-lg p-8 mb-6 border border-gray-200 dark:border-[#1F2937]">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-              <Info className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 bg-blue-100 dark:bg-gradient-to-r dark:bg-white rounded-lg">
+              <Info className="w-8 h-8 text-blue-600 dark:text-black" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#FF8A3D] dark:to-[#FFC600]">
                 About Syntra
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
@@ -57,54 +57,27 @@ export function InfoView() {
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700 transition-transform hover:scale-105"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex-shrink-0">
-                    <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
         {/* Quick Info */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-[#1F2937] rounded-lg shadow-lg p-6 border border-gray-200 dark:border-[#1F2937]">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             Quick Information
           </h2>
           <div className="space-y-3">
-            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-[#1F2937]">
               <span className="text-gray-600 dark:text-gray-400">Version</span>
               <span className="font-medium text-gray-900 dark:text-white">
                 1.0.0
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-[#1F2937]">
               <span className="text-gray-600 dark:text-gray-400">
                 Supported Chains
               </span>
               <span className="font-medium text-gray-900 dark:text-white">
-                6+ Networks
+                All Envio chains
               </span>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex justify-between items-center py-2 border-b border-gray-200 dark:border-[#1F2937]">
               <span className="text-gray-600 dark:text-gray-400">AI Model</span>
               <span className="font-medium text-gray-900 dark:text-white">
                 Gemini Pro

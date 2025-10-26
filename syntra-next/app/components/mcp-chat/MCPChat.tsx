@@ -91,50 +91,56 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
     []
   );
 
-  const executeToolCalls = useCallback(async (toolCalls: MCPToolCall[]) => {
-    const resultsArray: MCPToolCall[] = [];
+  const executeToolCalls = useCallback(
+    async (toolCalls: MCPToolCall[]) => {
+      const resultsArray: MCPToolCall[] = [];
 
-    for (const toolCall of toolCalls) {
-      try {
-        // Add chain parameter to tool call arguments
-        const argsWithChain = {
-          ...toolCall.args,
-          chain: selectedChain,
-        };
-        
-        // Execute the tool call via MCP
-        const result = await callToolRef.current(toolCall.tool, argsWithChain);
+      for (const toolCall of toolCalls) {
+        try {
+          // Add chain parameter to tool call arguments
+          const argsWithChain = {
+            ...toolCall.args,
+            chain: selectedChain,
+          };
 
-        if (result.isError) {
+          // Execute the tool call via MCP
+          const result = await callToolRef.current(
+            toolCall.tool,
+            argsWithChain
+          );
+
+          if (result.isError) {
+            const errorMessage =
+              result.content[0]?.text || "Tool execution failed";
+
+            resultsArray.push({
+              ...toolCall,
+              result,
+              status: "error",
+              error: errorMessage,
+            });
+          } else {
+            resultsArray.push({
+              ...toolCall,
+              result,
+              status: "success",
+            });
+          }
+        } catch (err) {
           const errorMessage =
-            result.content[0]?.text || "Tool execution failed";
-
+            err instanceof Error ? err.message : "Tool execution failed";
           resultsArray.push({
             ...toolCall,
-            result,
             status: "error",
             error: errorMessage,
           });
-        } else {
-          resultsArray.push({
-            ...toolCall,
-            result,
-            status: "success",
-          });
         }
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Tool execution failed";
-        resultsArray.push({
-          ...toolCall,
-          status: "error",
-          error: errorMessage,
-        });
       }
-    }
 
-    return resultsArray;
-  }, [selectedChain]);
+      return resultsArray;
+    },
+    [selectedChain]
+  );
 
   const handleSend = async (messageOverride?: string) => {
     const message = messageOverride || input.trim();
@@ -233,7 +239,7 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
   }));
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 transition-colors">
+    <div className="flex flex-col h-full bg-white dark:bg-[#1F2937] rounded-lg overflow-hidden shadow-lg border border-gray-200 dark:border-[#1F2937] transition-colors">
       {/* Connection Status */}
       <ConnectionStatus
         state={mcp.state || "connecting"}
@@ -252,9 +258,9 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
       </div>
 
       {/* Input Area */}
-      <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <div className="border-t border-gray-200 dark:border-[#1F2937] bg-white dark:bg-[#1F2937]">
         {/* Chain Selector */}
-        <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-6 py-3 border-b border-gray-200 dark:border-[#1F2937]">
           <div className="flex items-center gap-3">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Chain:
@@ -266,7 +272,7 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
             />
           </div>
         </div>
-        
+
         {/* Chat Input */}
         <ChatInput
           input={input}

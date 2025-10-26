@@ -872,7 +872,7 @@ export function ChainSelector({
 
       {isOpen && (
         <div
-          className={`absolute left-0 w-96 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-50 max-h-[500px] flex flex-col ${
+          className={`absolute left-0 w-96 h-96 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-50 max-h-[500px] flex flex-col ${
             dropdownPosition === "top" ? "bottom-full mb-1" : "top-full mt-1"
           }`}
         >
@@ -919,7 +919,7 @@ export function ChainSelector({
           </div>
 
           {/* Category Filter */}
-          <div className="p-3 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+          <div className="px-3 py-1 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
             <div className="flex flex-wrap gap-2">
               {["all", "mainnet", "l2", "testnet", "traces"].map((category) => (
                 <button
@@ -960,7 +960,7 @@ export function ChainSelector({
                   <button
                     key={config.id}
                     onClick={() => handleChainSelect(config.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 ${
+                    className={`w-full flex items-center gap-3 px-4 py-1 text-sm text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 ${
                       selectedChain === config.id
                         ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-500"
                         : "text-gray-700 dark:text-gray-300"
@@ -1008,7 +1008,7 @@ export function ChainSelector({
           </div>
 
           {/* Footer with chain count */}
-          <div className="p-3 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400 text-center flex-shrink-0 bg-gray-50 dark:bg-gray-750 rounded-b-lg">
+          <div className="px-3 py-1 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400 text-center flex-shrink-0 bg-gray-50 dark:bg-gray-750 rounded-b-lg">
             <div className="flex items-center justify-center gap-2">
               <span>
                 Showing {filteredChains.length} of{" "}

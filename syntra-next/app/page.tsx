@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-950 transition-colors">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-[#0B0F1A] transition-colors">
       {/* Sidebar */}
       <Sidebar currentView={currentView} onViewChange={setCurrentView} />
 
