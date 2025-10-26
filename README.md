@@ -2,24 +2,8 @@
 
 Syntra is an intelligent blockchain data querying platform that combines the power of Hypersync with AI-driven interfaces to make blockchain data easily accessible and queryable. The platform consists of a FastAPI backend for blockchain data operations and a Next.js frontend with an AI chat interface.
 
-## Project Structure
-
-```
-syntra/
-├── syntra-api/          # FastAPI backend for blockchain data
-│   ├── config/          # Hypersync client configuration
-│   ├── functions/       # Data querying functions
-│   ├── routers/         # API route definitions
-│   ├── examples/        # Example scripts for blockchain queries
-│   └── main.py          # FastAPI application entry point
-└── syntra-next/         # Next.js frontend
-    ├── app/             # Next.js app directory
-    │   ├── api/         # API routes
-    │   ├── components/   # React components
-    │   ├── contexts/    # React contexts
-    │   └── types/       # TypeScript types
-    └── public/          # Static assets
-```
+# Data Flow Diagram
+<img width="842" height="623" alt="Screenshot 2025-10-26 at 6 25 39 PM" src="https://github.com/user-attachments/assets/af2f3e8a-e9bb-4d79-b01d-1b58f6cd01a0" />
 
 ## Getting Started
 
@@ -150,6 +134,7 @@ Full API documentation is available at `http://localhost:8000/docs` when the bac
    - "What's the activity for wallet 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045?"
 
 ### MCP Integration
+<img width="534" height="646" alt="Screenshot 2025-10-26 at 6 22 13 PM" src="https://github.com/user-attachments/assets/aa335346-dff1-462d-b2db-ae2752d5e1a8" />
 
 The backend exposes an MCP endpoint at `/mcp` that allows AI systems to call blockchain querying tools. The frontend uses this integration to enable intelligent conversation about blockchain data.
 
@@ -169,6 +154,7 @@ The backend exposes an MCP endpoint at `/mcp` that allows AI systems to call blo
 - `call_decoder` - Decode contract function calls
 
 ## Development
+<img width="525" height="574" alt="Screenshot 2025-10-26 at 6 22 02 PM" src="https://github.com/user-attachments/assets/eade5f06-eb89-4c90-9bca-eaaf5902241a" />
 
 ### Backend Structure
 
