@@ -13,28 +13,28 @@ interface QuickTasksProps {
 
 const quickTasks: QuickTask[] = [
   {
-    icon: "📧",
-    label: "Find LinkedIn Jobs",
+    icon: "🔗",
+    label: "Get Chain Info",
     prompt:
-      "Help me find relevant job opportunities on LinkedIn based on my skills and interests.",
+      "Get the current Ethereum blockchain information including chain ID and latest block height.",
   },
   {
-    icon: "🗺️",
-    label: "Google Maps Leads",
+    icon: "🧾",
+    label: "Lookup Transaction",
     prompt:
-      "Help me find potential business leads using Google Maps for my target market.",
+      "Look up a specific Ethereum transaction by its hash to get detailed transaction information including sender, receiver, value, and gas details.",
   },
   {
-    icon: "💭",
-    label: "Discuss Ideal Customer",
+    icon: "📦",
+    label: "Analyze Block Data",
     prompt:
-      "Let's discuss and define my ideal customer profile for my business.",
+      "Get detailed information about a specific Ethereum block including all transactions, logs, miner details, and gas usage statistics.",
   },
   {
-    icon: "🗃️",
-    label: "Build Lead Database",
+    icon: "👛",
+    label: "Wallet Activity",
     prompt:
-      "Help me build and organize a comprehensive lead database for my business.",
+      "Analyze wallet activity for a specific Ethereum address including all ETH transactions and ERC20 token transfers within a block range.",
   },
 ];
 
