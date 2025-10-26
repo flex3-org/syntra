@@ -1,11 +1,12 @@
 import hypersync
 import asyncio
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
 # returns all blocks and the hashes of the transactions (not entire transaction objects) within a block range
 
-async def blocks_transactions_hashes(from_block: int, to_block: int):
-    client = get_hypersync_client()
+async def blocks_transactions_hashes(from_block: int, to_block: int, chain: Optional[Chain] = None):
+    client = get_hypersync_client(chain)
 
     query = hypersync.preset_query_blocks_and_transaction_hashes(from_block, to_block)
 

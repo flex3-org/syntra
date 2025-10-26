@@ -1,13 +1,14 @@
 import hypersync
 from hypersync import BlockField, TransactionField, LogField, FieldSelection, LogSelection
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def contract_logs(contract_address: str, from_block: int, to_block: int, event_topic: str = None):
+async def contract_logs(contract_address: str, from_block: int, to_block: int, event_topic: str = None, chain: Optional[Chain] = None):
     """
     Get all logs from a specific contract within a block range.
     Optionally filter by event topic.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     log_selection = LogSelection(
         address=[contract_address]

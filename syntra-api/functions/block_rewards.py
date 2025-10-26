@@ -1,13 +1,14 @@
 import hypersync
 from hypersync import BlockField, TransactionField, FieldSelection, BlockSelection, JoinMode
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def block_rewards(miner_address: str, from_block: int, to_block: int = None):
+async def block_rewards(miner_address: str, from_block: int, to_block: int = None, chain: Optional[Chain] = None):
     """
     Calculate block rewards for a specific miner address.
     Returns total transaction fees and burned fees.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # If no to_block specified, get current height
     if to_block is None:

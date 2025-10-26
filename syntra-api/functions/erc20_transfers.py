@@ -1,13 +1,14 @@
 import hypersync
 from hypersync import BlockField, TransactionField, LogField, FieldSelection, LogSelection
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def erc20_transfers(from_block: int, to_block: int, contract_address: str = None):
+async def erc20_transfers(from_block: int, to_block: int, contract_address: str = None, chain: Optional[Chain] = None):
     """
     Get all ERC20 transfer events within a block range.
     Optionally filter by contract address.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # ERC20 Transfer event signature
     transfer_topic = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"

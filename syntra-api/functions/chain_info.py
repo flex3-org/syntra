@@ -1,11 +1,12 @@
 import hypersync
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def chain_info():
+async def chain_info(chain: Optional[Chain] = None):
     """
     Get chain information including chain ID and current height.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     print("Fetching chain information...")
     

@@ -13,6 +13,7 @@ import { MCPChatMessage, MCPToolCall } from "@/app/types/mcp-chat";
 import { ConnectionStatus } from "./ConnectionStatus";
 import { ChatMessages } from "./ChatMessages";
 import { ChatInput } from "./ChatInput";
+import { ChainSelector, type Chain } from "./ChainSelector";
 
 export interface MCPChatHandle {
   sendMessage: (message: string) => void;
@@ -23,6 +24,7 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
   const [messages, setMessages] = useState<MCPChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
+  const [selectedChain, setSelectedChain] = useState<Chain>("ethereum");
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const prevLastMessage = useRef<unknown>(null);
 
@@ -94,8 +96,14 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
 
     for (const toolCall of toolCalls) {
       try {
+        // Add chain parameter to tool call arguments
+        const argsWithChain = {
+          ...toolCall.args,
+          chain: selectedChain,
+        };
+        
         // Execute the tool call via MCP
-        const result = await callToolRef.current(toolCall.tool, toolCall.args);
+        const result = await callToolRef.current(toolCall.tool, argsWithChain);
 
         if (result.isError) {
           const errorMessage =
@@ -126,7 +134,7 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
     }
 
     return resultsArray;
-  }, []);
+  }, [selectedChain]);
 
   const handleSend = async (messageOverride?: string) => {
     const message = messageOverride || input.trim();
@@ -244,13 +252,30 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
       </div>
 
       {/* Input Area */}
-      <ChatInput
-        input={input}
-        setInput={setInput}
-        onSend={() => handleSend()}
-        disabled={mcp.state !== "ready"}
-        isLoading={isLoading}
-      />
+      <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        {/* Chain Selector */}
+        <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Chain:
+            </span>
+            <ChainSelector
+              selectedChain={selectedChain}
+              onChainChange={setSelectedChain}
+              disabled={mcp.state !== "ready" || isLoading}
+            />
+          </div>
+        </div>
+        
+        {/* Chat Input */}
+        <ChatInput
+          input={input}
+          setInput={setInput}
+          onSend={() => handleSend()}
+          disabled={mcp.state !== "ready"}
+          isLoading={isLoading}
+        />
+      </div>
     </div>
   );
 });

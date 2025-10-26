@@ -1,13 +1,14 @@
 import hypersync
 from hypersync import BlockField, TransactionField, LogField, FieldSelection, TransactionSelection, LogSelection
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def wallet_activity(wallet_address: str, from_block: int, to_block: int, include_erc20: bool = True):
+async def wallet_activity(wallet_address: str, from_block: int, to_block: int, include_erc20: bool = True, chain: Optional[Chain] = None):
     """
     Get all transaction activity for a specific wallet address within a block range.
     Includes both ETH transactions and optionally ERC20 transfers.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # Normalize address to lowercase
     wallet_address = wallet_address.lower()

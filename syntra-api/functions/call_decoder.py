@@ -1,12 +1,13 @@
 import hypersync
 from hypersync import TransactionField, FieldSelection, TransactionSelection
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def call_decoder(contract_address: str, function_signature: str, from_block: int, to_block: int = None):
+async def call_decoder(contract_address: str, function_signature: str, from_block: int, to_block: int = None, chain: Optional[Chain] = None):
     """
     Decode function calls to a specific contract within a block range.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # If no to_block specified, get current height
     if to_block is None:

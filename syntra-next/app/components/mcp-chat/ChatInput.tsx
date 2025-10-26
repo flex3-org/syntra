@@ -23,7 +23,7 @@ export function ChatInput({
   };
 
   return (
-    <div className="px-6 py-5 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors">
+    <div className="px-6 py-5 bg-white dark:bg-gray-800 transition-colors">
       <div className="flex gap-3">
         <input
           type="text"

@@ -1,10 +1,11 @@
 import hypersync
 from hypersync import JoinMode, TransactionField, FieldSelection, TransactionSelection, Query
 from fastapi import HTTPException
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def txn_by_id(tx_hash: str):
-    client = get_hypersync_client()
+async def txn_by_id(tx_hash: str, chain: Optional[Chain] = None):
+    client = get_hypersync_client(chain)
 
     query = hypersync.Query(
         from_block=0,

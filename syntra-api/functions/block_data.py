@@ -1,12 +1,13 @@
 import hypersync
 from hypersync import BlockField, TransactionField, LogField, FieldSelection, JoinMode
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def block_data(block_number: int, include_transactions: bool = True, include_logs: bool = True):
+async def block_data(block_number: int, include_transactions: bool = True, include_logs: bool = True, chain: Optional[Chain] = None):
     """
     Get detailed block data including transactions and logs for a specific block.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # Determine join mode based on what data is requested
     join_mode = JoinMode.JOIN_ALL if (include_transactions or include_logs) else JoinMode.JOIN_NOTHING

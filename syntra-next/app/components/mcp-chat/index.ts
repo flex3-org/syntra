@@ -5,3 +5,4 @@ export { MessageDisplay } from "./MessageDisplay";
 export { MCPChat } from "./MCPChat";
 export type { MCPChatHandle } from "./MCPChat";
 export { ToolCallDisplay } from "./ToolCallDisplay";
+export { ChainSelector, type Chain, type ChainConfig, CHAIN_CONFIGS } from "./ChainSelector";

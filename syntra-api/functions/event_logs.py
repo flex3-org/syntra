@@ -1,12 +1,13 @@
 import hypersync
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def event_logs(contract_address: str, event_topic: str, from_block: int, to_block: int):
+async def event_logs(contract_address: str, event_topic: str, from_block: int, to_block: int, chain: Optional[Chain] = None):
     """
     Get all logs of a specific event from a contract within a block range.
     Uses preset query for logs of specific events.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # Use preset query for logs of specific event
     query = hypersync.preset_query_logs_of_event(contract_address, event_topic, from_block, to_block)

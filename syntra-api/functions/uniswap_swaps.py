@@ -1,12 +1,13 @@
 import hypersync
 from hypersync import BlockField, TransactionField, LogField, FieldSelection, LogSelection
-from config.hypersync_client import get_hypersync_client
+from config.hypersync_client import get_hypersync_client, Chain
+from typing import Optional
 
-async def uniswap_swaps(pool_address: str, from_block: int, to_block: int):
+async def uniswap_swaps(pool_address: str, from_block: int, to_block: int, chain: Optional[Chain] = None):
     """
     Get all Uniswap V2 swap events from a specific pool within a block range.
     """
-    client = get_hypersync_client()
+    client = get_hypersync_client(chain)
 
     # Uniswap V2 Swap event signature
     # Swap(address indexed sender, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out, address indexed to)
