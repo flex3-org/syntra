@@ -23,7 +23,7 @@ export function ChatInput({
   };
 
   return (
-    <div className="px-6 py-5 bg-white dark:bg-gray-800 transition-colors">
+    <div className="px-6 py-2 bg-white dark:bg-gray-800 transition-colors">
       <div className="flex gap-3">
         <input
           type="text"
@@ -32,7 +32,7 @@ export function ChatInput({
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
           disabled={disabled || isLoading}
-          className="flex-1 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent disabled:bg-gray-50 dark:disabled:bg-gray-800 disabled:text-gray-400 disabled:cursor-not-allowed transition-all duration-200"
+          className="flex-1 px-4 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent disabled:bg-gray-50 dark:disabled:bg-gray-800 disabled:text-gray-400 disabled:cursor-not-allowed transition-all duration-200"
         />
         <button
           onClick={onSend}
@@ -64,17 +64,6 @@ export function ChatInput({
           )}
         </button>
       </div>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 ml-1">
-        Press{" "}
-        <kbd className="px-2 py-0.5 text-xs font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded">
-          Enter
-        </kbd>{" "}
-        to send,{" "}
-        <kbd className="px-2 py-0.5 text-xs font-semibold text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded">
-          Shift+Enter
-        </kbd>{" "}
-        for new line
-      </p>
     </div>
   );
 }

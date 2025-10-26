@@ -41,7 +41,7 @@ export function ConnectionStatus({
   };
 
   return (
-    <div className="flex items-center justify-between px-6 py-1 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="flex items-center justify-between px-6 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 transition-colors">
       <div className="flex items-center gap-3">
         <div
           className={`w-3 h-3 rounded-full ${
