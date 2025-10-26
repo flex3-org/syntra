@@ -11,8 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Syntra - AI Chat",
-  description: "B2B Research and Lead Generation Platform",
+  title: "Syntra",
+  description:
+    "Syntra fuses AI + Hypersync to make blockchain data instantly searchable and smart.",
 };
 
 export default function RootLayout({
