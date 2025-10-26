@@ -21,31 +21,6 @@ syntra/
     └── public/          # Static assets
 ```
 
-## Features
-
-### Backend (FastAPI)
-- **Blockchain Data Queries**: Access Ethereum blockchain data through Hypersync
-- **MCP Integration**: Model Context Protocol (MCP) support for AI tool calling
-- **REST API**: Comprehensive REST endpoints for blockchain data
-- **Available Operations**:
-  - Transaction lookups by hash
-  - Block data queries
-  - ERC20 transfer tracking
-  - Contract event logs
-  - Wallet activity monitoring
-  - Uniswap swap event tracking
-  - Call decoding for contract interactions
-  - Block rewards calculation
-  - And more...
-
-### Frontend (Next.js)
-- **AI Chat Interface**: Natural language interaction for blockchain queries
-- **MCP Chat Integration**: Connects to backend via Model Context Protocol
-- **Real-time Updates**: Live connection status and query results
-- **Dark Mode**: Built-in theme support
-- **Responsive Design**: Modern, mobile-friendly UI
-- **Quick Tasks**: Pre-defined query templates for common operations
-
 ## Getting Started
 
 ### Prerequisites
@@ -101,6 +76,31 @@ The API will be available at `http://localhost:8000` with documentation at `http
    ```
 
 The frontend will be available at `http://localhost:3000`.
+
+## Features
+
+### Backend (FastAPI)
+- **Blockchain Data Queries**: Access Ethereum blockchain data through Hypersync
+- **MCP Integration**: Model Context Protocol (MCP) support for AI tool calling
+- **REST API**: Comprehensive REST endpoints for blockchain data
+- **Available Operations**:
+  - Transaction lookups by hash
+  - Block data queries
+  - ERC20 transfer tracking
+  - Contract event logs
+  - Wallet activity monitoring
+  - Uniswap swap event tracking
+  - Call decoding for contract interactions
+  - Block rewards calculation
+  - And more...
+
+### Frontend (Next.js)
+- **AI Chat Interface**: Natural language interaction for blockchain queries
+- **MCP Chat Integration**: Connects to backend via Model Context Protocol
+- **Real-time Updates**: Live connection status and query results
+- **Dark Mode**: Built-in theme support
+- **Responsive Design**: Modern, mobile-friendly UI
+- **Quick Tasks**: Pre-defined query templates for common operations
 
 ## Usage
 
