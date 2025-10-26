@@ -28,9 +28,8 @@ export const MCPChat = forwardRef<MCPChatHandle>((props, ref) => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const prevLastMessage = useRef<unknown>(null);
 
-  // Connect to MCP server at http://localhost:8000/mcp
   const mcp = useMcp({
-    url: "http://localhost:8000/mcp",
+    url: process.env.NEXT_PUBLIC_BACKEND_URL || "",
   });
 
   // Keep a ref to the latest callTool to avoid dependency churn
